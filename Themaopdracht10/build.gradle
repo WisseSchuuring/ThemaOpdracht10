@@ -1,0 +1,28 @@
+plugins {
+    id 'war'
+    id 'java'
+    id 'idea'
+}
+
+group 'nl.hanze.st.group3'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+    mavenCentral()
+}
+
+dependencies {
+    //Servlets
+    implementation 'javax.servlet:javax.servlet-api:3.1.0'
+    //Thymeleaf
+    implementation 'org.thymeleaf:thymeleaf:3.0.11.RELEASE'
+    //JUnit5
+    testImplementation 'junit:junit:4.11'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
