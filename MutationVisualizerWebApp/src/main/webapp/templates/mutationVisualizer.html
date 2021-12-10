@@ -1,13 +1,145 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mutation Visualizer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-<button type="button" class="btn btn-primary">Primary</button>
+
+<!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a href='#' class="navbar-brand"> Mutation Visualizer</a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navmenu"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-time">
+                        <a href="#tutorial" class="nav-link"> tutorial</a>
+                    </li>
+                    <li class="nav-time">
+                        <a href="#visualizer" class="nav-link"> visualization</a>
+                    </li>
+                    <li class="nav-time">
+                        <a href="#about" class="nav-link"> about</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+<!-- Intro section -->
+
+    <section class="bg-dark text-light p-5 text-center">
+        <div class="container">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <div>
+                    <h1>Create your animal</h1>
+                    <p class="lead my-4">
+                        Welcome to the web application to create your own animal! Use the
+                        DNA spiral and change the sequence to modify the animal. Changes you
+                        make will be represented in a picture on this site. Modify and learn
+                        about the wonders of DNA mutation!
+                    </p>
+                </div>
+                <img class="img-fluid w-50 d-none d-sm-block"
+                     src="Images/DNA_intro_section.png"
+                     alt="">
+            </div>
+        </div>
+    </section>
+
+<!-- Website tutorial -->
+
+    <section class="bg-orange text-light p-5 text-center" id="tutorial">
+        <div class="container">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <h1> Tutorial section</h1>
+            </div>
+        </div>
+    </section>
+
+<!-- Tutorial boxes  -->
+
+    <section class="p5">
+        <div class="container">
+            <div class="events">
+                <div class="row text-center">
+
+                    <!-- Block 1 -->
+                    <div class="col-md">
+                        <div class="card bg-light text-dark">
+                            <div class="card-body text-center">
+                                <h3>Step 1</h3>
+                                <img src="Images/DNA_engineering.png" alt="" width="150" height="210">
+                                <h5> Modify the sequence </h5>
+                                <p class="lead my-4">
+                                    Change the pins in the DNA spiral model plugged into the
+                                    computer to change the sequence. Simply fill the spiral
+                                    and make sure every pin is in the spiral.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Block 2 -->
+                    <div class="col-md">
+                        <div class="card bg-light text-dark">
+                            <div class="card-body text-center">
+                                <h3> Step 2</h3>
+                                <img src="Images/Browsing.png" alt="" width="275" height="210">
+                                <h5> Go to the visualization part </h5>
+                                <p class="lead my-4">
+                                    Once your done changing the sequence head to the visualization
+                                    part of the webapp. You can find this using the navigation bar
+                                    above or simply by scrolling down.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Block 3 -->
+                    <div class="col-md">
+                        <div class="card bg-light text-dark">
+                            <div class="card-body text-center">
+                                <h3> Step 3</h3>
+                                <h5> Press the button! </h5>
+                                <p class="lead my-4">
+                                    Finally press the GENERATE button to generate the picture
+                                    and see what you created! An image will pop up with information
+                                    on the changes you made.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white p-5">
+        <div class="container">
+            <div class="events"></div>
+        </div>
+    </section>
+
+    <section class="bg-orange text-light p-5 text-center" id="visualizer">
+            <div class="container">
+                <h1> Visualization </h1>
+            </div>
+    </section>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
