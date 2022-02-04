@@ -13,13 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Locale;
 
-@WebServlet(name = "mutationServlet", urlPatterns = "./*")
+@WebServlet(name = "mutationServlet", urlPatterns = "/mutationVisualizer")
 public class mutationServlet extends HttpServlet{
     private TemplateEngine templateEngine;
 
     @Override
     public void init() throws ServletException{
         this.templateEngine = WebConfig.getTemplateEngine();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+        WebContext ctx = new WebContext(
+                request,
+                response,
+                request.getServletContext(),
+                request.getLocale()
+        );
+        System.out.println("Button pressed");
+        templateEngine.process("mutationVisualizer", ctx, response.getWriter());
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,6 +43,6 @@ public class mutationServlet extends HttpServlet{
                 request.getServletContext(),
                 locale
         );
-    templateEngine.process("mutationVisualizer.html", ctx);
+    templateEngine.process("mutationVisualizer", ctx, response.getWriter());
     }
 }

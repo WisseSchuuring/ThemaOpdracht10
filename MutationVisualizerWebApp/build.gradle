@@ -17,6 +17,8 @@ dependencies {
     implementation 'javax.servlet:javax.servlet-api:3.1.0'
     //Thymeleaf
     implementation 'org.thymeleaf:thymeleaf:3.0.11.RELEASE'
+    //Bootstrap
+    implementation group: 'org.webjars', name: 'bootstrap', version: '4.0.0-2'
     //JUnit5
     testImplementation 'junit:junit:4.11'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
