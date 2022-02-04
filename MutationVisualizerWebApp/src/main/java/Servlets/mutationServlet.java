@@ -3,6 +3,7 @@ package Servlets;
 import Webconfig.WebConfig;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
+import model.SequenceBuilder;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -30,6 +31,13 @@ public class mutationServlet extends HttpServlet{
                 request.getServletContext(),
                 request.getLocale()
         );
+        String testString = "ATGCCGTGCTTAGTA";
+        SequenceBuilder builder = new SequenceBuilder(testString);
+        String dna = builder.dna;
+        String complement = builder.createComplementStrand(dna);
+        String rna = builder.createRNAStrand(dna);
+        String aminoAcid = builder.createAminoAcid(dna);
+        System.out.println(dna + complement + rna + aminoAcid);
         System.out.println("Button pressed");
         templateEngine.process("mutationVisualizer", ctx, response.getWriter());
     }
@@ -43,6 +51,6 @@ public class mutationServlet extends HttpServlet{
                 request.getServletContext(),
                 locale
         );
-    templateEngine.process("mutationVisualizer", ctx, response.getWriter());
+        templateEngine.process("mutationVisualizer", ctx, response.getWriter());
     }
 }
