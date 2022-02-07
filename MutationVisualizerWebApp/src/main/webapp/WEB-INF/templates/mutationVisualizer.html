@@ -14,7 +14,7 @@
 <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
         <div class="container">
-            <a href='#' class="navbar-brand"> Mutation Visualizer</a>
+            <a href='#' class="navbar-brand" th:text="#{nav.title}"> The central dogma</a>
 
             <button
                 class="navbar-toggler"
@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     <li class="nav-time">
-                        <a href="#tutorial" class="nav-link" th:text="#{tutorial.nav}"> Tutorial</a>
+                        <a href="#tutorial" class="nav-link" th:text="#{tutorial.nav}"> Dogma explained</a>
                     </li>
                     <li class="nav-time">
                         <a href="#visualizer" class="nav-link" th:text="#{translation.nav}"> Translation</a>
@@ -53,10 +53,10 @@
                 <div>
                     <h1 th:text="#{title.txt}">Create your protein</h1>
                     <p class="lead my-4" th:text="#{title.msg}">
-                        Welcome to the web application to create your own animal! Use the
-                        DNA spiral and change the sequence to modify the animal. Changes you
-                        make will be represented in a picture on this site. Modify and learn
-                        about the wonders of DNA mutation!
+                        Welcome to this web application about the central dogma.
+                        This site will try to show how the dogma works, how a protein
+                        is formed from DNA and to show what this process looks like and
+                        what changes in the DNA can do to the protein.
                     </p>
                 </div>
                 <img class="img-fluid w-50 d-none d-sm-block"
@@ -73,7 +73,7 @@
     <section class="bg-orange text-light p-5 text-center" id="tutorial">
         <div class="container">
             <div class="d-sm-flex align-items-center justify-content-between">
-                <h1 th:text="#{tutorial.nav}"> Tutorial section</h1>
+                <h1 th:text="#{tutorial.nav}"> Central dogma explained</h1>
             </div>
         </div>
     </section>
@@ -90,17 +90,17 @@
                         <div class="card bg-light text-dark">
                             <div class="card-body text-center">
                                 <h3 th:text="#{step1.hdr}">Step 1</h3>
-                                <img src="../../Images/DNA_engineering.png"
-                                     th:src="@{Images/DNA_engineering.png}"
+                                <img src="../../Images/transcription.png"
+                                     th:src="@{Images/transcription.png}"
                                      alt=""
-                                     width="150"
-                                     height="210">
+                                     width="320"
+                                     height="190">
                                 <div class="events">
-                                    <h5> Modify the sequence </h5>
+                                    <h5 th:text="#{step1.title}"> Transcription </h5>
                                     <p class="lead my-4" th:text="#{step1.txt}">
-                                        Change the pins in the DNA spiral model plugged into the
-                                        computer to change the sequence. Simply fill the spiral
-                                        and make sure every pin is in the spiral.
+                                        During transcription the coding DNA stand gets translated to mRNA.
+                                        This mRNA is the opposite of the coding strand and a copy of the complementary strand,
+                                        with the exception being that every T becomes a U.
                                     </p>
                                 </div>
                             </div>
@@ -111,18 +111,19 @@
                     <div class="col-md">
                         <div class="card bg-light text-dark">
                             <div class="card-body text-center">
-                                <h3> Step 2</h3>
-                                <img src="../../Images/button_image.jpg"
-                                     th:src="@{/Images/button_image.jpg}"
+                                <h3 th:text="#{step2.hdr}"> Step 2</h3>
+                                <img src="../../Images/translation.png"
+                                     th:src="@{/Images/translation.png}"
                                      alt=""
-                                     width="275"
-                                     height="210">
+                                     width="310"
+                                     height="190">
                                 <div class="events">
-                                    <h5> Press the button! </h5>
-                                    <p class="lead my-4">
-                                        Once you've created a sequence you can scroll down
-                                        to the GENERATE button to generate the changes in
-                                        your protein.
+                                    <h5 th:text="#{step2.title}"> Translation </h5>
+                                    <p class="lead my-4" th:text="#{step2.txt}">
+                                        During translation mRNA gets translated to aminoacids.
+                                        Every three mRNA nucleotides form a codon which gets translated to it's complementary aminoacid,
+                                        the first codon is the startcodon ATG and the final a stopcodon.
+                                        The mRNA gets read and the aminoacids are put toghether in this codon order
                                     </p>
                                 </div>
                             </div>
@@ -133,18 +134,19 @@
                     <div class="col-md">
                         <div class="card bg-light text-dark">
                             <div class="card-body text-center">
-                                <h3> Step 3</h3>
-                                <img src="../../Images/Browsing.png"
-                                     th:src="@{/Images/Browsing.png}"
+                                <h3 th:text="#{step3.hdr}"> Step 3</h3>
+                                <img src="../../Images/proteinfolding.png"
+                                     th:src="@{/Images/proteinfolding.png}"
                                      alt=""
-                                     width="275"
-                                     height="210">
+                                     width="320"
+                                     height="185">
                                 <div class="events">
-                                    <h5> Learn! </h5>
-                                    <p class="lead my-4">
-                                        See what changes have happened in your protein and
-                                        learn about them. The changes will be shown and the text
-                                        box will describe the effects of the changes.
+                                    <h5 th:text="#{step3.title}"> Protein folding </h5>
+                                    <p class="lead my-4", th:text="#{step3.txt}">
+                                        After the aminoacids are put thogether they form a polypeptidechain.
+                                        This then undergoes folding driven by interactions between the aminoacids in the chain.
+                                        These folds determine the form and function of the protein which is formed by one
+                                        or multiple chains.
                                     </p>
                                 </div>
                             </div>
@@ -166,27 +168,39 @@
 
     <section class="bg-orange text-light p-5" id="visualizer">
             <div class="container">
-                <h1 class="text-center"> Visualization </h1>
-                <p class="lead my-4 text-center">
-                    Now it's time to create the animal. Make sure the DNA spiral is setup right
-                    and click the generate button under the picture. The picture will change
-                    and the text box will describe your changes.
+                <h1 class="text-center" th:text="#{translation.nav}"> Translation </h1>
+                <p class="lead my-4 text-center" th:text="#{translation.txt}">
+                    Here a sequence will be collected with it's complementary strand,
+                    mRNA sequence and aminoacid sequence. After pressing the button a
+                    mutation will occur in the sequence, the change will be presented
+                    in the middle and the effects of the change will be shown and
+                    explained in the textbox to the right.
                     <i class="fa fa-heptagon-fill" ></i>
                 </p>
                 <div class="row align-center justify-content-between">
-                    <div class="col-sm-6">
-                        <img src="../../Images/paard.png"
-                             th:src="@{/Images/paard.png}"
-                             class="img-fluid" alt=""
-                             width="675" height="210">
+                    <div class="col-sm-3">
+                        <p th:text="#{dna.txt}">DNA:</p>
+                        <p th:text="${dnaString}">DNA string</p>
+                        <p th:text="#{complement.txt}">complement:</p>
+                        <p th:text="${complementString}">complement string</p>
+                        <p th:text="#{rna.txt}">RNA:</p>
+                        <p th:text="${rnaString}"> RNA string</p>
+                        <p th:text="#{protein.txt}">protein:</p>
+                        <p th:text="${protein}">Protein</p>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
+                        <p th:text="#{nuc.change}">Change nucleotide</p>
+                        <p th:text="${changeNucleotide}"> change nucleotide</p>
+                        <p th:text="#{aa.change}">Change protein</p>
+                        <p th:text="${changeProtein}"> change protein</p>
+                    </div>
+                    <div class="col-sm-3">
                         <div class="card bg-light text-dark">
                             <div class="card-body text-center">
-                                <h5>
+                                <h5 th:text="#{${mutationTitle}}">
                                     *mutation type*
                                 </h5>
-                                <p class="lead my-4">
+                                <p th:text="#{${mutationText}}">
                                     *Text box*
                                 </p>
                             </div>
@@ -205,8 +219,8 @@
 
     <section class="p-5" id="about">
         <div class="container">
-            <h2 class="text-center mb-4 events">
-                About the project
+            <h2 class="text-center mb-4 events" th:text="#{about.nav}">
+                About
             </h2>
             <div class="row align-items-center justify-content-between">
                 <div class="col-md">
@@ -215,8 +229,16 @@
                     >
                 </div>
                 <div class="col-md p-5">
-                    <p>
-                        This site was created by Wisse Schuuring and Rienk Heins *text*
+                    <p th:text="#{about.txt}">
+                        The DNA is a complete package containing the inherited traits you have been given by your parents,
+                        and is unique. DNA is transcribed into RNA, which in turn is translated to a protein sequence that has
+                        a certain function, for example the pigmentation of your hair or eyes. But what would happen if we
+                        could simply change our DNA ourselves? This application was created to demonstrate in a simplified manner
+                        what the relationship is between your DNA and you, and how changing your DNA structure could have
+                        small or big consequences on how the proteins that you make would look like! This project was created for
+                        the final assignment for Theme 10 of the BioInformatics courses held at Hanze University of Applied Sciences,
+                        with the goal of making it easier for new students to see how biology and programming can come together and
+                        offer both a physical and virtual way to craft with DNA.
                     </p>
                 </div>
             </div>
