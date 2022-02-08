@@ -29,6 +29,7 @@ public class MutationServlet extends HttpServlet{
         this.templateEngine = WebConfig.getTemplateEngine();
     }
 
+    // Post method that handles actions when button is pressed
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         WebContext ctx = new WebContext(
@@ -37,28 +38,32 @@ public class MutationServlet extends HttpServlet{
                 request.getServletContext(),
                 request.getLocale()
         );
+        // get JSON data
         JSONObject sequenceData = new JSONObject();
         try {
             sequenceData = getSequencedata();
         } catch (InterruptedException e){
             e.printStackTrace();
         }
+        // Create data for thymeleaf actions
         String testString = JSONObject.valueToString(sequenceData.get("sequence")).replace("\"", "");
         SequenceBuilder builder = new SequenceBuilder(testString);
         String dna = builder.dna;
         String protein = builder.createAminoAcid(dna);
-        String position = JSONObject.valueToString(sequenceData.get("position")).replace("\"", "");
-        String positionProtein = Integer.toString((int)Math.ceil(Double.parseDouble(position)/3));
+        String positionObject = JSONObject.valueToString(sequenceData.get("position")).replace("\"", "");
+        String position = Integer.toString(Integer.parseInt(positionObject) + 1);
+        String positionProtein = Integer.toString((int)Math.ceil((Double.parseDouble(position))/3));
         String mutation = JSONObject.valueToString(sequenceData.get("mutation")).replace("\"", "");
         String[] mutationNucleotides = mutation.split("->");
 
-        MutationChecker mutationChecker = new MutationChecker(dna, Integer.parseInt(position),
-                Integer.parseInt(positionProtein), mutationNucleotides[1].charAt(0));
+        MutationChecker mutationChecker = new MutationChecker(dna, Integer.parseInt(positionObject),
+                Integer.parseInt(positionProtein), mutationNucleotides[0].charAt(0));
         String oldProtein = mutationChecker.createOldProtein(mutationChecker.createOldSequence());
         char oldAminoAcid = oldProtein.charAt(Integer.parseInt(positionProtein) - 1);
         char newAminoAcid = protein.charAt(Integer.parseInt(positionProtein) - 1);
         String mutationType = mutationChecker.typeOfMutation(Character.toString(oldAminoAcid), Character.toString(newAminoAcid));
 
+        // Send data to HTML file
         ctx.setVariable("dnaString", dna);
         ctx.setVariable("complementString", builder.createComplementStrand(dna));
         ctx.setVariable("rnaString", builder.createRNAStrand(dna));
@@ -71,6 +76,7 @@ public class MutationServlet extends HttpServlet{
         templateEngine.process("mutationVisualizer", ctx, response.getWriter());
     }
 
+    // Get method that handles website being first started
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         Locale locale = request.getLocale();
@@ -80,16 +86,19 @@ public class MutationServlet extends HttpServlet{
                 request.getServletContext(),
                 locale
         );
+        // Getting JSON data
         JSONObject sequenceData = new JSONObject();
         try {
             sequenceData = getSequencedata();
         } catch (InterruptedException e){
             e.printStackTrace();
         }
+        // Creating data for thymeleaf
         String testString = JSONObject.valueToString(sequenceData.get("sequence")).replace("\"","");
         SequenceBuilder builder = new SequenceBuilder(testString);
         String dna = builder.dna;
 
+        // Send data to HTML page
         ctx.setVariable("dnaString", dna);
         ctx.setVariable("complementString", builder.createComplementStrand(dna));
         ctx.setVariable("rnaString", builder.createRNAStrand(dna));
@@ -101,6 +110,7 @@ public class MutationServlet extends HttpServlet{
         templateEngine.process("mutationVisualizer", ctx, response.getWriter());
     }
 
+    // Method that pulls a JSON data file from external URL
     public JSONObject getSequencedata() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://bioinf.nl/DNAanimal/api/v1/sequence")).build();

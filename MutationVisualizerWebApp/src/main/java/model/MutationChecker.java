@@ -18,17 +18,21 @@ public class MutationChecker {
         this.oldNucleotide = oldChar;
     }
 
+    // Creates the previous sequence
     public String createOldSequence(){
         StringBuilder oldSequence = new StringBuilder(this.dna);
-        oldSequence.setCharAt(this.nucleotidePosition - 1, this.oldNucleotide);
+        oldSequence.setCharAt(this.nucleotidePosition, this.oldNucleotide);
+        System.out.println(oldSequence + "\n");
         return oldSequence.toString();
     }
 
+    // Creates the previous protein
     public String createOldProtein(String oldSequence){
         SequenceBuilder builder = new SequenceBuilder(oldSequence);
         return builder.createAminoAcid(oldSequence);
     }
 
+    // Check what type of mutation occurred
     public String typeOfMutation(String oldAminoAcid, String newAminoAcid){
         if (newAminoAcid.equals(oldAminoAcid)){
             return "silent";

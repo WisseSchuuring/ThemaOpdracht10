@@ -1,0 +1,36 @@
+---
+title: "Readme"
+author: "Rienk Heins"
+date: "2/8/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Creators
+Rienk Heins
+Wisse Schuuring
+Hanze University of applied science
+
+This project is a website for the open day at Hanze university of applied science. The code contains a Java servlet, thymeleaf html and gralde file creating the webapp running on a tomcat server. The following readme will assume the user has IntelliJ IDEA and tomcat installed.
+
+To run the project the following configurations have to be used:
+Application server: Tomcat, version 9.0.55 used for project
+URL http://localhost:8080/mutationVisualizer
+JRE: Java 11 used for project
+Deployement: MutationVisualizerWepApp-0.0.2.war
+Application context: /
+
+# Dependencies
+
+Java serlvets api 3.1.0
+Thymeleaf 3.0.11.RELEASE
+Bootstrap version 4.0.0-2
+JUnit5
+JSON version 20211205
+
+# Use
+
+To use the site run the program with the required settings. When on the site the user can explore the information and perform a mutation by pressing the GENERATE! button in the translation section.
